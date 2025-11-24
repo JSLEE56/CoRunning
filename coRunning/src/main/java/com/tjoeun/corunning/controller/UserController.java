@@ -17,31 +17,31 @@ public class UserController {
         this.userService = userService;
     }
 
-    // 1) 전체 조회
+    //전체 조회
     @GetMapping
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    // 2) 한 명 조회
+    //한 명 조회
     @GetMapping("/{userId}")
     public User getUser(@PathVariable String userId) {
         return userService.getUser(userId);
     }
 
-    // 3) 생성
+    //생성
     @PostMapping
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
 
-    // 4) 수정
+    //수정
     @PutMapping("/{userId}")
     public User updateUser(@PathVariable String userId, @RequestBody User update) {
         return userService.updateUser(userId, update);
     }
 
-    // 5) 삭제
+    //삭제
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable String userId) {
         userService.deleteUser(userId);
