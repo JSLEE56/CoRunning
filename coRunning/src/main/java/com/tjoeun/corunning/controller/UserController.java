@@ -26,7 +26,7 @@ public class UserController {
 
     //특정 회원 조회
     @GetMapping("/{userId}")
-    public User getUser(@PathVariable String userId) {
+    public User getUser(@PathVariable("userId") String userId) {
         return userService.getUser(userId);
     }
 
@@ -38,7 +38,7 @@ public class UserController {
 
     //회원 정보 수정
     @PutMapping("/{userId}")
-    public User updateUser(@PathVariable String userId,
+    public User updateUser(@PathVariable("userId") String userId,
                            @RequestBody User update,
                            HttpSession session) {
 
@@ -54,7 +54,7 @@ public class UserController {
 
     //회원 정보 삭제
     @DeleteMapping("/{userId}")
-    public String deleteUser(@PathVariable String userId,
+    public String deleteUser(@PathVariable("userId") String userId,
                              HttpSession session) {
 
         String loginId = (String) session.getAttribute("loginUserId");
