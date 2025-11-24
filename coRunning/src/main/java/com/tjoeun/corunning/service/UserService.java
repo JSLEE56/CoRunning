@@ -25,7 +25,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    // 한 명 조회
+    // 특정 회원 조회
     public User getUser(String userId) {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다. id=" + userId));
@@ -47,7 +47,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    // 회원 수정
+    // 회원 정보 수정
     public User updateUser(String userId, User update) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다. id=" + userId));
@@ -71,15 +71,14 @@ public class UserService {
     }
     
     //로그인
-    public String login(String userId, String userPw) {
+    public User login(String userId, String userPw) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("해당 아이디가 존재하지 않습니다."));
 
         if (!user.getUserPw().equals(userPw)) {
             throw new RuntimeException("비밀번호가 일치하지 않습니다.");
         }
-
-        return "로그인 성공!";
+        return user;
     }
 
     
